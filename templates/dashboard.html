@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | AuthSpace</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="dashboard-card">
+        <div class="brand">
+            <h1>AuthSpace</h1>
+        </div>
+
+        <h1>Welcome, {{ username }}!</h1>
+        <p>
+            You have successfully logged in.
+            Your account is ready to use.
+        </p>
+
+        <form action="/logout" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="logout-button">Log Out</button>
+        </form>
+    </main>
+</body>
+</html>

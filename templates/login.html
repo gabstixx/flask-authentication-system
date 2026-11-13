@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | AuthSpace</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="auth-container">
+        <div class="brand">
+            <h1>AuthSpace</h1>
+            <p>A secure space for your account.</p>
+        </div>
+
+        <section class="auth-card">
+            <h2>Welcome back</h2>
+            <p class="subtitle">Sign in to continue to your account.</p>
+
+            {% with messages = get_flashed_messages() %}
+                {% for message in messages %}
+                    <p class="message">{{ message }}</p>
+                {% endfor %}
+            {% endwith %}
+
+            <form action="/login" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email"
+                           placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password"
+                           placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="auth-button">Sign In</button>
+            </form>
+
+            <p class="auth-footer">
+                Don't have an account?
+                <a href="/register">Create one</a>
+            </p>
+        </section>
+    </main>
+</body>
+</html>
